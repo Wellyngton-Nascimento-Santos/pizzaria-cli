@@ -1,0 +1,26 @@
+// 1- Importanto o sequelize
+const sequelize =  require('sequelize');
+
+// 2- Importar configurações
+const config = require('../databases/config').development;
+
+// 3 - Criar a conexão com o bando de dados
+const conexao = new sequelize(config);
+
+// 4 - Executar uma consulta
+const sql = `SELECT
+	            p.id,
+                p.nome,
+                ifnull(SUM(pp.quantidade), 0) as quantidade
+            FROM
+	            pizzas as p
+                LEFT JOIN pedido_pizza as pp ON p.id = pp.pizza_id
+            group by p.id, p.nome;`
+
+ const promessa = conexao.query(sql);
+
+ promessa.then(
+    dados => {
+        console.log(dados);
+    }
+ )
