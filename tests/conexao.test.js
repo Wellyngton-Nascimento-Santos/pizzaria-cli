@@ -7,7 +7,7 @@ const config = require('../databases/config').development;
 // 3 - Criar a conexão com o bando de dados
 const conexao = new sequelize(config);
 
-// 4 - Executar uma consulta
+// 4 - Executar uma consulta: RAW QUERY
 const sql = `SELECT
 	            p.id,
                 p.nome,
