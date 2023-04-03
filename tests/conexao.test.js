@@ -17,7 +17,7 @@ const sql = `SELECT
                 LEFT JOIN pedido_pizza as pp ON p.id = pp.pizza_id
             group by p.id, p.nome;`
 
- const promessa = conexao.query(sql);
+ const promessa = conexao.query(sql, {type: sequelize.QueryTypes.SELECT});
 
  promessa.then(
     dados => {
